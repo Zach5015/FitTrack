@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    	body {
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+    		height: 100vh;
+    		margin: 0;
+    		background-color: #f0f0f0;
+		}
+    
+        .phone {
+            width: 300px;
+            height: 600px;
+            border: 16px solid black;
+            border-radius: 40px;
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            display: flex;
+    		flex-direction: column;
+            overflow: auto;
+        }
+        .phone::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background-color: yellow; /* This is your loading screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* This will stack the logo and the text vertically */
+            overflow: auto; /* Enable vertical scrolling */
+            
+        }
+        .logo {
+            width: 200px;
+            height: 200px;
+            background-image: url('https://lh3.googleusercontent.com/pw/AP1GczN_HswuJgGmSn8iuy9IF9TERjcJ6hgXDrQKKunojLetXUEC1nj0Jx8SQY4tybWpe0iJonV3sVyNdc48EOQdiwiHej6fLL3DlPg5wSAHrCcR5nacT_PqcKX2tzqjHEzN5nekU2ZJUQVkhzKcMj06KnkbrLm1jqsnTp_z2FW_y-kM11XRkuqKyTgQZZt-NunNGlKje2MNcSzQoXabLv1cXUx3NNnoKW0FEZg3fprSkcav2zQkJR8h9Ux-md1j0mmokf4q6J7LquvHaHOA9SRO04rD7D_J_SFtL_hw4hTVJTqAo3bF7gmkfhQ_7I7VOSJS6i-OcY3J-G7tGFZb_1Kh8ZY66yDyud9NT7n1QZfxGbKaDhxZkryA5mtXAa23uxcuasPaLSZzXOK8gGlJmufuQZ80zj2vj71OHvbJq8jVnXtOMZr8MykIk-L7ziwyN-uelQONhex2SPKyuYldvrBHGf67FrqNK1MJVNUdYIJ55AwAb6mwesJ7urYm3SwcWSaYtyR4yVnVMtyrKM3COfjgpWOc1qCzZ2UB9uaa3uvGbQheQhbhp4pd6XnCRTIHB4EdHY37gjL-422ibhvTzdjZYMNbY82A5kwB2cZc-BON15SaXfQAVpszp8r3zfiJbugC8u17FWzGWOaC6U8HyIBrew7XCI-QA0SvH4H44M3l5cXx2A5DK6OAfDsiteEjTzZSp6yYOgPKaBMyxI7g-toxPTS8htDCBN1p56DK9ZY9m9hVfZKKWCLo46zwLW-Q6w91zgQxYxjOcEUkcIEq61fWiKcUxafwVCx3MGvhS94G6KuYecC6RlmoS-V4uGPuWyZYQmN0YZQPc1hRWb9EkzTIC7G6IyljZSsM7ETtP-Wz6RFJHS7y7Nue0dFyITxZunbhnqV3mx19a0zwmBtxhBklUSP0qzqprJrUWTns7Oj2_XfqeCqNpwZU8WRvH1PG_3vqmcPoZPsNFlGPdlgZUCcq8zpxFjJyLZv1418S29q0abRR0S8h9alGY1jTSBupzRiyxYkyvHV2jAiHroNU97uYAejKy2_2sZ3M_hZtQS7RKIoLw6dXBkFjxMw7oHj5abGvGV6dkgc=w913-h913-s-no-gm?authuser=3');
+            background-size: cover;
+        }
+        .app-name {
+            margin-top: 0px; /* This will add some space between the logo and the text */
+            font-size: 48px; /* This will make the text larger */
+            font-weight: bold; /* This will make the text bold */
+        }
+        }
+        .input-field {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .submit-button {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .home-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .welcome-message {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .login-link {
+    		margin-top: 20px;
+    		font-size: 14px;
+        }
+        .login-link a {
+    		color: #4CAF50;
+   			text-decoration: none;
+		}
+
+		.login-link a:hover {
+    		text-decoration: underline;
+		}
+        .subscription-plan {
+			width: 80%;
+    		margin-bottom: 10px;
+    		background-color: white;
+    		border-radius: 10px;
+    		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    		padding: 20px;
+    		text-align: center;
+		}
+
+		.subscription-plan h3 {
+    		font-size: 14px;
+    		margin-bottom: 10px;
+		}
+
+		.subscription-plan p {
+    		font-size: 12px;
+    		margin-bottom: 10px;
+		}
+		
+		.subscription-plan ul {
+    		text-align: left;
+            padding-left: 20px; /* Add left padding to list items */
+		}
+
+		.subscription-plan ul li {
+    		margin-bottom: 5px;
+		}
+        .fitness-screen {
+    		background-color: #36625e;
+    		color: #333;
+    		font-family: Arial, sans-serif;
+		}
+
+		.fitness-screen h2 {
+    		color: #4CAF50;
+   			 margin-bottom: 10px;
+		}
+
+		.fitness-screen h3 {
+    		color: #4CAF50;
+    		margin-bottom: 10px;
+            font-size: 24px;
+            flex-grow: 1;
+		}
+
+		.fitness-screen p {
+    		margin-bottom: 10px;
+		}
+
+		.section {
+    		background-color: #f9ded2;
+    		border-radius: 50px;
+    		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    		padding: 20px;
+    		margin-bottom: 25px;
+            display: flex;
+    		justify-content: flex-start; /* Align items to the start */
+    		align-items: center;
+            flex-direction: column;
+		}
+        .meal-section {
+    		background-color: #f9ded2;
+    		border-radius: 40px;
+    		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    		padding: 20px;
+    		margin-bottom: 15px;
+            display: flex;
+    		justify-content: flex-start;
+    		align-items: center;
+            flex-direction: column;
+		}
+        .sett-section {
+    		background-color: #f9ded2;
+    		border-radius: 40px;
+    		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    		padding: 60px;
+    		margin-bottom: 15px;
+            display: flex;
+    		justify-content: space-between;
+            align-content: stretch;
+    		align-items: stretch;
+            flex-direction: column;
+		}
+        .meal-info {
+    		flex: 1;
+            flex-grow: 1;
+		}
+
+		.meal-image {
+    		max-width: 50%;
+    		height: auto;
+            justify-content: center;
+            
+		}
+        .bottom-nav {
+    		display: flex;
+    		justify-content: space-around;
+    		position: sticky;
+    		bottom: 0;
+    		width: 93%; /* Changed from calc(100% - 40px) */
+    		background-color: #333;
+    		padding: 10px;
+            flex-shrink: 0;
+		}
+
+		.bottom-nav i {
+    		color: #fff;
+    		font-size: 20px;
+    		cursor: pointer;
+		}
+        hr {
+    		width: 50%; /* Change this to adjust the width */
+    		height: 1px; /* Change this to adjust the thickness */
+    		background-color: #333; /* Change this to adjust the color */
+    		border: none; /* Remove the default border */
+		}
+        .active-icon {
+        	color: red; /* Change this to the color you want */
+    	
+    	}	
+	</style>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+
+<div class="phone">
+    <div id="phone-screen" class="phone-screen">
+        <div class="logo"></div>
+        <div class="app-name">FitTrack</div>
+<script>
+
+setTimeout(function() {
+    document.getElementById('phone-screen').innerHTML = `
+        <div class="phone-screen">
+            <div class="logo"></div>
+            <input type="text" class="input-field" placeholder="Username" required>
+            <input type="password" class="input-field" placeholder="Password" required>
+            <button class="submit-button" onclick="goToHomeScreen()">Login</button>
+            <button class="submit-button" onclick="goToRegisterScreen()">Register</button>
+        </div>
+    `;
+}, 3000);
+
+function goToRegisterScreen() {
+    document.getElementById('phone-screen').innerHTML = `
+        <div class="phone-screen">
+            <div class="logo"></div>
+            <input type="text" class="input-field" id="email" placeholder="Your Email" required>
+            <input type="text" class="input-field" id="username" placeholder="Username" required>
+            <input type="password" class="input-field" id="password" placeholder="Password" required>
+            <input type="password" class="input-field" id="confirm-password" placeholder="Repeat Password"required>
+            <button class="submit-button" onclick="register()">Register</button>
+            <div class="login-link">Already have an account? <a href="#" onclick="goToLoginScreen()">Log in</a></div>
+        </div>
+    `;
+}
+
+function goToLoginScreen() {
+    document.getElementById('phone-screen').innerHTML = `
+        <div class="phone-screen">
+            <div class="logo"></div>
+            <input type="text" class="input-field" placeholder="Username" required>
+            <input type="password" class="input-field" placeholder="Password" required>
+            <button class="submit-button" onclick="goToHomeScreen()">Login</button>
+            <button class="submit-button" onclick="goToRegisterScreen()">Register</button>
+        </div>
+    `;
+}
+
+function goToSubscriptionScreen() {
+    document.getElementById('phone-screen').innerHTML = `
+        <div class="phone-screen">
+            <h2>Subscription Plans</h2>
+            <div class="subscription-plan">
+                <h3>BASIC</h3>
+                <p>Free</p>
+                <ul>
+                    <li>Access to basic tracking features</li>
+                    <li>Access to community forums and challenges</li>
+                </ul>
+            <button class="submit-button" onclick="goToFitnessScreen()">NEXT</button>    
+            </div>
+            <div class="subscription-plan">
+                <h3>STANDARD</h3>
+                <p>$9.99</p>
+                <ul>
+                    <li>All features of FitTrack Basic</li>
+                    <li>Access to advanced analytics and insights</li>
+                    <li>Personalized workout and meal plans</li>
+                </ul>
+            <button class="submit-button" onclick="goToFitnessScreen()">NEXT</button>
+            </div>
+            <div class="subscription-plan">
+                <h3>PREMIUM</h3>
+                <p>$12.99</p>
+                <ul>
+                    <li>All features of FitTrack Standard</li>
+                    <li>Personalized Health Coaching</li>
+                    <li>Virtual Nutritionist</li>
+                    <li>Discounts on fitness products</li>
+                </ul>
+            <button class="submit-button" onclick="goToFitnessScreen()">NEXT</button>    
+            </div>
+        </div>
+    `;
+}
+
+function goToHomeScreen() {
+    document.getElementById('phone-screen').innerHTML = `
+        <div class="home-screen">
+        	<div class="logo"></div>
+            <div class="welcome-message">Welcome to FitTrack!</div>
+            <!-- Add your home screen content here -->
+            <button class="submit-button" onclick="goToSubscriptionScreen()">Subscribe</button>
+        </div>
+    `;
+}
+
+function goToMainPage() {
+    // Redirect to the main page of the application
+    window.location.href = "main_page.html"; // Replace "main_page.html" with the actual URL of your main page
+}
+
+function goToFitnessScreen() {
+    
+    document.getElementById('phone-screen').innerHTML = `
+        <div class="fitness-screen">
+            <h2>FOR TODAY</h2>
+            <h3>Hey, User!</h3>
+            <div class="section">
+                <h3><i class="fas fa-heartbeat"></i> Workout Progress</h3>
+                <hr>
+                <p>67%</p>
+                <p>running - 30 mins</p>
+            </div>
+            <div class="section">
+                <h3><i class="fas fa-heartbeat"></i> Heart Beat</h3>
+                <hr>
+                <p>117 BPM</p>
+            </div>
+            <div class="section">
+                <h3><i class="fas fa-bed"></i> Sleep</h3>
+                <hr>
+                <p>8 h 25 m</p>
+            </div>
+            <div class="section">
+                <h3><i class="fas fa-running"></i> Running</h3>
+                <hr>
+                <p>time: 45 mins</p>
+                <p>Start with a slow pace and gradually increase your speed. This helps to prevent injuries and makes the workout more effective.</p>
+            </div>
+            <div class="section">
+                <h3><i class="fas fa-dumbbell"></i> Gym</h3>
+                <hr>
+                <p>time:1h30m</p>
+                <p>Include a rest timer between sets. This ensures you are getting enough rest and aids in muscle recovery.</p>
+            </div>
+            <div class="bottom-nav">
+                <i id="fitness-icon" class="fas fa-heartbeat active-icon" onclick="goToFitnessScreen()"></i>
+                <i id="meal-icon" class="fas fa-utensils" onclick="goToMealPlan()"></i>
+                <i id="search-icon" class="fas fa-search" onclick="goToSearch()"></i>
+                <i id="calendar-icon" class="far fa-calendar-alt" onclick="goToCalendar()"></i>
+                <i id="settings-icon" class="fas fa-cog" onclick="goToSettings()"></i>
+            </div>
+        </div>
+    `;
+}
+
+function goToMealPlan() {
+    document.getElementById('phone-screen').innerHTML = `
+    	<div class="fitness-screen">
+    		<h2>FOR TODAY</h2>
+    		<h3>Meal Plan</h3> <p>Hey, User!</p>
+    		<div class="meal-section">
+        		<h3><i class="fas fa-tint"></i> Hydration</h3>
+                <hr>
+        		<p>You didn't drink enough water today. Stay hydrated by drinking 2-5 liters a day.</p>
+        		<button class="submit-button">Drink Now</button>
+    		</div>
+            <div class="meal-section">
+            <h3><i class="fas fa-utensils"></i> Breakfast</h3>
+            <hr>
+            	<img src="https://images.services.kitchenstories.io/gxInWDQniM21aQiVgvnXmDrMnvo=/3840x0/filters:quality(85)/images.kitchenstories.io/communityImages/f4604e05f6a9eaca99afddd69e849005_c02485d4-0841-4de6-b152-69deb38693f2.jpg" alt="Breakfast Image" class="meal-image">
+    		</div>
+            <div class="meal-section">
+        	<h3><i class="fas fa-utensils"></i> Breakfast</h3>
+            <hr>
+        		<p>CALORIES: 360 Cal | time: 25 min</p>
+        		<p>FAT: 32.2 | PROTEIN: 16.5 | CARBOHYDRATE: 16.5 | CHOLESTEROL: 35</p>
+           	</div>
+            <div class="bottom-nav">
+                <i class="fas fa-heartbeat" onclick="goToFitnessScreen()"></i>
+                <i class="fas fa-utensils" onclick="goToMealPlan()"></i>
+                <i class="fas fa-search" onclick="goToSearch()"></i>
+                <i class="far fa-calendar-alt" onclick="goToCalendar()"></i>
+                <i class="fas fa-cog" onclick="goToSettings()"></i>
+            </div>
+        </div>
+    `;
+        
+}
+
+function goToSearch() {
+    document.getElementById('phone-screen').innerHTML = `
+        <div class="fitness-screen">
+            <h2>Community</h2>
+            <input type="text" class="input-field" id="search-input" placeholder="Search topics..." required>
+            <button class="submit-button" onclick="searchTopics()">Search</button>
+            <div class="sett-section">
+                <h3><i class="fas fa-comments"></i> Popular Topics</h3>
+                <hr>
+                <ul id="topic-list">
+                    <li>Running Tips</li>
+                    <li>Yoga Poses for Beginners</li>
+                    <li>Strength Training Routines</li>
+                    <li>Hydration and Exercise</li>
+                    <li>Healthy Eating Habits</li>
+                </ul>
+            </div>
+            <div class="bottom-nav">
+                <i class="fas fa-heartbeat" onclick="goToFitnessScreen()"></i>
+                <i class="fas fa-utensils" onclick="goToMealPlan()"></i>
+                <i id="search-icon" class="fas fa-search active-icon" onclick="goToSearch()"></i>
+                <i class="far fa-calendar-alt" onclick="goToCalendar()"></i>
+                <i class="fas fa-cog" onclick="goToSettings()"></i>
+            </div>
+        </div>
+    `;
+}
+
+
+function goToCalendar() {
+    document.getElementById('phone-screen').innerHTML = `
+        <div class="fitness-screen">
+            <h2>Calendar</h2>
+            <div class="sett-section">
+                <h3><i class="fas fa-calendar-alt"></i> Today's Activities</h3>
+                <hr>
+                <ul id="activity-list">
+                    <li>Running - 30 mins</li>
+                    <li>Yoga - 45 mins</li>
+                    <li>Strength Training - 1 hour</li>
+                    <li>Hydration - 2 liters</li>
+                    <li>Healthy Eating - 3 balanced meals</li>
+                </ul>
+                <button class="submit-button" onclick="addToCalendar()">Add Activity</button>
+            </div>
+            <div class="bottom-nav">
+                <i class="fas fa-heartbeat" onclick="goToFitnessScreen()"></i>
+                <i class="fas fa-utensils" onclick="goToMealPlan()"></i>
+                <i class="fas fa-search" onclick="goToSearch()"></i>
+                <i id="calendar-icon" class="far fa-calendar-alt active-icon" onclick="goToCalendar()"></i>
+                <i class="fas fa-cog" onclick="goToSettings()"></i>
+            </div>
+        </div>
+    `;
+
+}
+
+function goToSettings() {
+    document.getElementById('phone-screen').innerHTML = `
+    	<div class="fitness-screen">
+    		<div class="sett-section">
+        		<h3><i class="fas fa-user"></i> Account</h3>
+                <hr>
+                <p>Username: User</p>
+                <p>Email: user@example.com</p>
+                <button class="submit-button" onclick="goToEditProfile()">Edit Profile</button>
+            </div>
+            <div class="sett-section">
+            <h3><i class="fas fa-cogs"></i> Preferences</h3>
+                <hr>
+                <p>Language: English</p>
+                <p>Notifications: On</p>
+                <button class="submit-button" onclick="goToEditPreferences()">Edit Preferences</button>
+            </div>
+            <div class="sett-section">
+        	<h3><i class="fas fa-info-circle"></i> About</h3>
+                <hr>
+                <p>App Version: 1.0.0</p>
+                <button class="submit-button" onclick="goToAboutPage()">More Info</button>
+            </div>
+            <div class="bottom-nav">
+                <i class="fas fa-heartbeat" onclick="goToFitnessScreen()"></i>
+                <i class="fas fa-utensils" onclick="goToMealPlan()"></i>
+                <i class="fas fa-search" onclick="goToSearch()"></i>
+                <i class="far fa-calendar-alt" onclick="goToCalendar()"></i>
+                <i class="fas fa-cog" onclick="goToSettings()"></i>
+            </div>
+        </div>
+    `;
+      
+}
+    
+
+function register() {
+    // Add your registration logic here
+    // For demonstration purposes, let's simulate a successful registration
+    // You may replace this with your actual registration logic
+    alert("Registration successful!");
+
+    // Direct to the home screen
+    goToHomeScreen();
+}
+
+function selectIcon(id) {
+    // Get all icons
+    var icons = document.getElementsByClassName('nav-icon');
+
+    // Remove 'selected' class from all icons
+    for (var i = 0; i < icons.length; i++) {
+        icons[i].classList.remove('selected');
+    }
+
+    // Add 'selected' class to clicked icon
+    document.getElementById(id).classList.add('selected');
+}
+
+function addToCalendar() {
+    var activity = prompt("Enter the activity you want to add:");
+    if (activity) {
+        var li = document.createElement("li");
+        li.textContent = activity;
+        document.getElementById('activity-list').appendChild(li);
+    }
+}
+function searchTopics() {
+    var topic = document.getElementById('search-input').value;
+    if (topic) {
+        // Add your search logic here
+        alert("Searching for: " + topic);
+    }
+}
+
+</script>
+
+</body>
+</html>
